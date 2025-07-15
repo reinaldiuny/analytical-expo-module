@@ -67,15 +67,19 @@
       margin-bottom: 5px;
     }
     .floating-video {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      width: 300px;
-      height: 170px;
-      z-index: 1000;
-      border: 3px solid #00ff99;
-      border-radius: 10px;
-    }
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 33.33vw;
+  height: 100vh;
+  border: none;
+  z-index: 1000;
+  border-left: 4px solid #00ff99;
+  border-bottom: 4px solid #00ff99;
+  border-radius: 0 0 0 10px;
+  cursor: grab;
+  transition: top 0.3s ease, left 0.3s ease, right 0.3s ease, bottom 0.3s ease;
+      }
   </style>
 </head>
 <body>
@@ -190,6 +194,75 @@
       const resultEl = document.getElementById("quizResult");
       resultEl.innerHTML = `🌟 You got <strong>${score}</strong> out of <strong>${questions.length}</strong> for the multiple choice! ✍️ Essays will be checked manually.`;
     }
+  </script>
+  <script>
+  const video = document.querySelector('.floating-video');
+  let isDragging = false;
+  let offsetX = 0, offsetY = 0;
+
+  function snapToCorner(x, y) {
+    const winWidth = window.innerWidth;
+    const winHeight = window.innerHeight;
+    const vidWidth = video.offsetWidth;
+    const vidHeight = video.offsetHeight;
+
+    const cornerX = x < winWidth / 2 ? 0 : winWidth - vidWidth;
+    const cornerY = y < winHeight / 2 ? 0 : winHeight - vidHeight;
+
+    video.style.left = `${cornerX}px`;
+    video.style.top = `${cornerY}px`;
+    video.style.right = 'auto';
+    video.style.bottom = 'auto';
+  }
+
+  // Desktop
+  video.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    offsetX = e.clientX - video.getBoundingClientRect().left;
+    offsetY = e.clientY - video.getBoundingClientRect().top;
+    video.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mouseup', (e) => {
+    if (isDragging) snapToCorner(e.clientX, e.clientY);
+    isDragging = false;
+    video.style.cursor = 'grab';
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      video.style.left = `${e.clientX - offsetX}px`;
+      video.style.top = `${e.clientY - offsetY}px`;
+      video.style.right = 'auto';
+      video.style.bottom = 'auto';
+    }
+  });
+
+  // Touch
+  video.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    const touch = e.touches[0];
+    offsetX = touch.clientX - video.getBoundingClientRect().left;
+    offsetY = touch.clientY - video.getBoundingClientRect().top;
+  });
+
+  document.addEventListener('touchend', (e) => {
+    if (isDragging && e.changedTouches[0]) {
+      const touch = e.changedTouches[0];
+      snapToCorner(touch.clientX, touch.clientY);
+    }
+    isDragging = false;
+  });
+
+  document.addEventListener('touchmove', (e) => {
+    if (isDragging) {
+      const touch = e.touches[0];
+      video.style.left = `${touch.clientX - offsetX}px`;
+      video.style.top = `${touch.clientY - offsetY}px`;
+      video.style.right = 'auto';
+      video.style.bottom = 'auto';
+    }
+  });
   </script>
 </body>
 </html>
