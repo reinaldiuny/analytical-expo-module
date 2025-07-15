@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytical Exposition Module</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #1d1f21;
+      color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h1 {
+      color: #00ff99;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    section {
+      background: #2e2e2e;
+      padding: 20px;
+      border: 4px solid #00ff99;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .quiz {
+      margin-top: 20px;
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+    .result {
+      font-weight: bold;
+      margin-top: 20px;
+      color: #ffff00;
+    }
+    button {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #ff3399;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 10px;
+    }
+    button:hover {
+      background-color: #ff66b2;
+    }
+    input[type="radio"], textarea {
+      margin-right: 8px;
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .floating-video {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      height: 170px;
+      z-index: 1000;
+      border: 3px solid #00ff99;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎮 Analytical Exposition Quest 🎮</h1>
+    <p>👾 Grade 12 English Learning Adventure 👾</p>
+  </header>
+
+  <section>
+    <h2>💡 Definition and Purpose</h2>
+    <p><strong>Analytical Exposition</strong> is a type of text that presents arguments to support a writer's opinion. The purpose is to persuade readers that the opinion is valid and logical.</p>
+  </section>
+
+  <section>
+    <h2>🧱 Generic Structure</h2>
+    <ul>
+      <li><strong>Thesis:</strong> States the writer’s opinion.</li>
+      <li><strong>Arguments:</strong> Provides logical reasons to support the opinion.</li>
+      <li><strong>Reiteration:</strong> Reinforces and restates the opinion.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🔤 Language Features</h2>
+    <ul>
+      <li>✅ Simple present tense</li>
+      <li>✅ Relational processes (e.g., is, are, has)</li>
+      <li>✅ Internal conjunctions (e.g., firstly, in addition)</li>
+      <li>✅ Causal conjunctions (e.g., because, as a result)</li>
+      <li>✅ Abstract nouns (e.g., freedom, education)</li>
+      <li>✅ Modal verbs (e.g., should, must)</li>
+    </ul>
+  </section>
+
+  <section class="quiz">
+    <h2>🎯 Quiz Challenge (20 MCQs + 5 Essays)</h2>
+    <form id="quizForm">
+      <div id="mcqSection"></div>
+      <div id="essaySection"></div>
+      <button type="button" onclick="checkQuiz()">🚀 Submit!</button>
+    </form>
+    <div class="result" id="quizResult"></div>
+  </section>
+
+  <iframe class="floating-video"
+  src="https://www.youtube.com/embed/eRXE8Aebp7s?autoplay=1&mute=1&loop=1&playlist=eRXE8Aebp7s"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen>
+</iframe>
+
+
+  <script>
+    const questions = [
+      { q: "What is the purpose of an analytical exposition text?", a: "c", o: ["To entertain", "To describe", "To persuade", "To instruct"] },
+      { q: "Which is an internal conjunction?", a: "b", o: ["Because", "Firstly", "Must", "Freedom"] },
+      { q: "Which part restates the main idea?", a: "c", o: ["Thesis", "Argument", "Conclusion/Reiteration", "Introduction"] },
+      { q: "Which tense is mostly used?", a: "a", o: ["Simple present", "Simple past", "Future", "Present continuous"] },
+      { q: "Modal verb example?", a: "c", o: ["Firstly", "Is", "Must", "Because"] },
+      { q: "Relational process verb?", a: "b", o: ["Freedom", "Is", "Run", "Must"] },
+      { q: "What is a thesis?", a: "a", o: ["Opening opinion", "Evidence", "Closing", "List"] },
+      { q: "Which is an abstract noun?", a: "d", o: ["Firstly", "Should", "Blue", "Justice"] },
+      { q: "Purpose of reiteration?", a: "a", o: ["Reinforce opinion", "Give example", "Introduce idea", "Start argument"] },
+      { q: "What comes first?", a: "a", o: ["Thesis", "Argument", "Conclusion", "Details"] },
+      { q: "Example of causal conjunction?", a: "c", o: ["Is", "Firstly", "Because", "That"] },
+      { q: "In 'Students must study', 'must' is?", a: "b", o: ["Verb", "Modal", "Noun", "Adverb"] },
+      { q: "'Education is important', 'education' is?", a: "c", o: ["Verb", "Adverb", "Noun", "Modal"] },
+      { q: "'Firstly, homework helps' is?", a: "a", o: ["Internal conj.", "Verb", "Modal", "Adjective"] },
+      { q: "Most used verb in analytical?", a: "a", o: ["Is", "Go", "Run", "Play"] },
+      { q: "Best thesis example?", a: "b", o: ["Firstly, homework...", "Education is crucial", "Because students...", "Play is fun"] },
+      { q: "Main goal of analytical text?", a: "d", o: ["Inform", "Describe", "Narrate", "Persuade"] },
+      { q: "Why use modal verbs?", a: "a", o: ["Show necessity", "Show tense", "Describe", "Express time"] },
+      { q: "'Consequently' shows?", a: "b", o: ["Internal conj.", "Causal", "Relational", "Modal"] },
+      { q: "A good conclusion...", a: "d", o: ["Starts idea", "Adds facts", "Questions", "Restates thesis"] }
+    ];
+
+    const essays = [
+      "What makes a strong thesis statement?",
+      "Why is it important to use causal conjunctions in your argument?",
+      "Give your opinion on social media's effect on teenagers using 2 arguments.",
+      "Write a conclusion paragraph for an essay about online learning.",
+      "Why should students learn analytical exposition in school?"
+    ];
+
+    const mcqSection = document.getElementById("mcqSection");
+    questions.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.className = "question";
+      let html = `<label>${i + 1}. ${q.q}</label>`;
+      q.o.forEach((opt, j) => {
+        const letter = String.fromCharCode(97 + j);
+        html += `<input type="radio" name="q${i + 1}" value="${letter}"> ${opt}<br>`;
+      });
+      div.innerHTML = html;
+      mcqSection.appendChild(div);
+    });
+
+    const essaySection = document.getElementById("essaySection");
+    essays.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.className = "question";
+      div.innerHTML = `<label>Essay ${i + 1}: ${q}</label><textarea rows="4" cols="50"></textarea>`;
+      essaySection.appendChild(div);
+    });
+
+    function checkQuiz() {
+      let score = 0;
+      questions.forEach((q, i) => {
+        const selected = document.querySelector(`input[name="q${i + 1}"]:checked`);
+        if (selected && selected.value === q.a) score++;
+      });
+      const resultEl = document.getElementById("quizResult");
+      resultEl.innerHTML = `🌟 You got <strong>${score}</strong> out of <strong>${questions.length}</strong> for the multiple choice! ✍️ Essays will be checked manually.`;
+    }
+  </script>
+</body>
+</html>
